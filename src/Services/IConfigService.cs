@@ -5,5 +5,5 @@
 /// </summary>
 public interface IConfigService
 {
-    public string Name { get; set; }
+    public string Name { get; }
 }
