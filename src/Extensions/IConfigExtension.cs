@@ -5,5 +5,6 @@
 /// </summary>
 public interface IConfigExtension : IExtensionModule
 {
-
+    public IConfigExtension Load();
+    public void Save();
 }
