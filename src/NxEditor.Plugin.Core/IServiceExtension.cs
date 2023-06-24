@@ -6,5 +6,5 @@
 public interface IServiceExtension
 {
     public string Name { get; }
-    public void RegisterExtension(IServiceManager serviceManager);
+    public void RegisterExtension(IServiceLoader serviceManager);
 }
