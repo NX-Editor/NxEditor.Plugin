@@ -1,8 +1,8 @@
-﻿using NxEditor.Plugin.Extensions;
-using NxEditor.Plugin.Models;
-using NxEditor.Plugin.Services;
+﻿using NxEditor.Plugin.Core.Extensions;
+using NxEditor.Plugin.Core.Models;
+using NxEditor.Plugin.Core.Services;
 
-namespace NxEditor.Plugin;
+namespace NxEditor.Plugin.Core;
 
 public class ServiceManager : IServiceLoader
 {
@@ -36,7 +36,7 @@ public class ServiceManager : IServiceLoader
         return this;
     }
 
-    public IServiceLoader Register(IConfigExtension extension)
+    public IServiceLoader Register(IExtensionModule extension)
     {
         return this;
     }

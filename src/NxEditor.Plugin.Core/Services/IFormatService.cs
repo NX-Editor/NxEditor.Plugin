@@ -1,6 +1,7 @@
-﻿using NxEditor.Plugin.Models;
+﻿using NxEditor.Plugin.Core.Services;
+using NxEditor.Plugin.Core.Models;
 
-namespace NxEditor.Plugin.Services;
+namespace NxEditor.Plugin.Core.Services;
 
 /// <summary>
 /// Handles an <see cref="IFileHandle"/> request as a file format specification
@@ -8,14 +9,19 @@ namespace NxEditor.Plugin.Services;
 public interface IFormatService : IServiceModule
 {
     /// <summary>
+    /// Public dictionary of the availible <see cref="IActionService"/> handles availible for this <see cref="IFormatService"/>
+    /// </summary>
+    public Dictionary<string, IActionService> Actions { get; }
+
+    /// <summary>
     /// Reads the <paramref name="handle"/> into the <see cref="IFormatService"/>
     /// </summary>
     /// <param name="handle"></param>
-    public void Read(IFileHandle handle);
+    public Task Read(IFileHandle handle);
 
     /// <summary>
     /// Writes the <see cref="IFormatService"/> payload to an <see cref="IFileHandle"/> and returns the result
     /// </summary>
     /// <returns></returns>
-    public IFileHandle Write();
+    public Task<IFileHandle> Write();
 }

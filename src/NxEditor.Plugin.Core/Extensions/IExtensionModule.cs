@@ -1,4 +1,4 @@
-﻿namespace NxEditor.Plugin.Extensions;
+﻿namespace NxEditor.Plugin.Core.Extensions;
 
 public interface IExtensionModule
 {

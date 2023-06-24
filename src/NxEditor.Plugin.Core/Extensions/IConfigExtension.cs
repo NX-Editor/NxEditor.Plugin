@@ -1,4 +1,4 @@
-﻿namespace NxEditor.Plugin.Extensions;
+﻿namespace NxEditor.Plugin.Core.Extensions;
 
 /// <summary>
 /// Defines a configuration (settings) extension

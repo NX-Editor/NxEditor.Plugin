@@ -1,6 +1,6 @@
-﻿using NxEditor.Plugin.Models;
+﻿using NxEditor.Plugin.Core.Models;
 
-namespace NxEditor.Plugin.Services;
+namespace NxEditor.Plugin.Core.Services;
 
 public interface IServiceModule
 {

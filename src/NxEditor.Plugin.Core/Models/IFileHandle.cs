@@ -1,4 +1,4 @@
-﻿namespace NxEditor.Plugin.Models;
+﻿namespace NxEditor.Plugin.Core.Models;
 
 public interface IFileHandle
 {
