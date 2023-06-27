@@ -15,6 +15,7 @@ public class ServiceManager : IServiceLoader
         foreach ((_, var service) in _services.Where(x => x.Value.IsValid(handle)).OrderBy(x => x.Value is IProcessingService)) {
             if (service is IProcessingService proc) {
                 handle = proc.Process(handle);
+                handle.ProcessServices.Add(proc);
                 continue;
             }
 
