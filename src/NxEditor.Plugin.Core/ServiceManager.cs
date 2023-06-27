@@ -18,7 +18,7 @@ public class ServiceManager : IServiceLoader
                 continue;
             }
 
-            return (IFormatService)service;
+            return ((IFormatServiceProvider)service).GetService(handle);
         }
 
         throw new NotSupportedException("The provided IFileHandle is not a supported data type");
