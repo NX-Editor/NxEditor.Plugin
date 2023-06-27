@@ -1,0 +1,18 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Avalonia" Version="11.0.0-preview6" />
+    <PackageReference Include="Dock.Model.Mvvm" Version="11.0.0-preview6" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\NxEditor.Plugin.Core\NxEditor.Plugin.Core.csproj" />
+  </ItemGroup>
+
+</Project>
