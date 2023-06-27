@@ -8,7 +8,7 @@ public class FileHandle : IFileHandle
     public string? Path { get; set; }
     public List<IProcessingService> ProcessServices { get; } = new();
 
-    public FileHandle(byte[] data, string path)
+    public FileHandle(byte[] data, string? path = null)
     {
         Data = data;
         Path = path;
