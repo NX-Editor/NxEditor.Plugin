@@ -2,13 +2,13 @@
 
 namespace NxEditor.Plugin;
 
-public partial class StateService : ObservableObject
+public partial class StatusMgr : ObservableObject
 {
-    public static StateService Shared { get; } = new();
+    public static StatusMgr Shared { get; } = new();
 
     private readonly Timer _timer;
 
-    public StateService()
+    public StatusMgr()
     {
         _timer = new((e) => {
             if (IsWorking) {

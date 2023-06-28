@@ -12,7 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\NxEditor.Plugin.Core\NxEditor.Plugin.Core.csproj" />
+    <ProjectReference Include="..\NxEditor.Plugin.Core\NxEditor.PluginBase.Core.csproj" />
   </ItemGroup>
 
 </Project>
