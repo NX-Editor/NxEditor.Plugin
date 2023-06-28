@@ -21,6 +21,8 @@ public abstract class Editor<T, TView> : Document, IEditor, IFormatService, IDis
     }
 
     public virtual bool HasChanged => false;
+    UserControl IEditor.View => View;
+
     public TView View { get; }
     public Dictionary<string, IActionService> Actions => _actions;
     public IFileHandle Handle { get; protected set; }
