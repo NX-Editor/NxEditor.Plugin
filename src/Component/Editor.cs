@@ -28,7 +28,7 @@ public abstract class Editor<T, TView> : Document, IEditor, IFormatService, IDis
     public IFileHandle Handle { get; protected set; }
     public abstract string[] ExportExtensions { get; }
 
-    public abstract Task Read(IFileHandle handle);
+    public abstract Task Read();
     public abstract Task<IFileHandle> Write();
 
     public virtual async Task Save(string? path)

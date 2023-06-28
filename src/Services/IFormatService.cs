@@ -23,10 +23,9 @@ public interface IFormatService
     public IFileHandle Handle { get; }
 
     /// <summary>
-    /// Reads the <paramref name="handle"/> into the <see cref="IFormatService"/>
+    /// Reads the <see cref="Handle"/>
     /// </summary>
-    /// <param name="handle"></param>
-    public Task Read(IFileHandle handle);
+    public Task Read();
 
     /// <summary>
     /// Writes the <see cref="IFormatService"/> payload to an <see cref="IFileHandle"/> and returns the result
