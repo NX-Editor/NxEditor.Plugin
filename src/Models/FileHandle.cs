@@ -14,4 +14,11 @@ public class FileHandle : IFileHandle
         Data = data;
         Path = path;
     }
+
+    public FileHandle(string path)
+    {
+        Name = System.IO.Path.GetFileName(path);
+        Data = File.ReadAllBytes(path);
+        Path = path;
+    }
 }
