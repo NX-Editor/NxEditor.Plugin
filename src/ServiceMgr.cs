@@ -4,9 +4,9 @@ using NxEditor.PluginBase.Services;
 
 namespace NxEditor.PluginBase;
 
-public class ServiceManager : IServiceLoader
+public class ServiceMgr : IServiceLoader
 {
-    public static ServiceManager Shared { get; } = new();
+    public static ServiceMgr Shared { get; } = new();
 
     private readonly Dictionary<string, IServiceModule> _services = new();
 
