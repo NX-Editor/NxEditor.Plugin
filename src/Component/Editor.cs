@@ -28,7 +28,7 @@ public abstract class Editor<T, TView> : Document, IEditor, IFormatService, IDis
 
     public virtual async Task Save(string? path)
     {
-        StatusMgr.SetStatus($"Saving {typeof(T).Name}. . .", "fa-regular fa-floppy-disk");
+        StatusMgr.Set($"Saving {typeof(T).Name}. . .", "fa-regular fa-floppy-disk");
 
         IFileHandle handle = await Write();
         foreach (var proc in handle.ProcessServices) {

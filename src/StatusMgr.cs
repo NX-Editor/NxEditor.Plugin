@@ -32,7 +32,7 @@ public partial class StatusMgr : ObservableObject
     /// <summary>
     /// Resets the modal status to "Ready"
     /// </summary>
-    public static void Reset() => SetStatus("Ready");
+    public static void Reset() => Set("Ready");
 
     /// <summary>
     /// Sets a custom message and icon to the global status
@@ -41,7 +41,7 @@ public partial class StatusMgr : ObservableObject
     /// <param name="icon">The font-awesome icon name and type to use in the status modal</param>
     /// <param name="isWorkingStatus"></param>
     /// <param name="temporaryStatusTime">Reset the status message after a set amount of time</param>
-    public static void SetStatus(string status, string icon = "fa-regular fa-message", bool? isWorkingStatus = null, double temporaryStatusTime = double.NaN)
+    public static void Set(string status, string icon = "fa-regular fa-message", bool? isWorkingStatus = null, double temporaryStatusTime = double.NaN)
     {
         Shared.Status = status;
         Shared.IsWorking = isWorkingStatus ?? status.ToLower() != "ready";
