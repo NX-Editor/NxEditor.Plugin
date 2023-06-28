@@ -11,6 +11,9 @@ public abstract class Editor<T, TView> : Document, IEditor, IFormatService, IDis
 
     public Editor(IFileHandle handle)
     {
+        Id = handle.Path ?? handle.Name;
+        Title = handle.Name;
+
         Handle = handle;
         View = new() {
             DataContext = this
