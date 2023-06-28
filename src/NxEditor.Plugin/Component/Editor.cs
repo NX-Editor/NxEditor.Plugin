@@ -11,7 +11,7 @@ public abstract class Editor<T, TView> : Document, IEditor, IFormatService where
 
     public Editor(IFileHandle handle)
     {
-        FileHandle = handle;
+        Handle = handle;
         View = new() {
             DataContext = this
         };
@@ -20,7 +20,7 @@ public abstract class Editor<T, TView> : Document, IEditor, IFormatService where
     public virtual bool HasChanged => false;
     public TView View { get; }
     public Dictionary<string, IActionService> Actions => _actions;
-    public IFileHandle FileHandle { get; protected set; }
+    public IFileHandle Handle { get; protected set; }
 
     public abstract Task Read(IFileHandle handle);
     public abstract Task<IFileHandle> Write();
@@ -32,7 +32,7 @@ public abstract class Editor<T, TView> : Document, IEditor, IFormatService where
             proc.Reprocess(handle);
         }
 
-        FileHandle.Data = handle.Data;
+        Handle.Data = handle.Data;
 
         if (path is not null) {
             await File.WriteAllBytesAsync(path, handle.Data);
