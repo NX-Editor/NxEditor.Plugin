@@ -1,8 +1,8 @@
-﻿using NxEditor.Plugin.Core.Extensions;
-using NxEditor.Plugin.Core.Models;
-using NxEditor.Plugin.Core.Services;
+﻿using NxEditor.PluginBase.Core.Extensions;
+using NxEditor.PluginBase.Core.Models;
+using NxEditor.PluginBase.Core.Services;
 
-namespace NxEditor.Plugin.Core;
+namespace NxEditor.PluginBase.Core;
 
 public class ServiceManager : IServiceLoader
 {

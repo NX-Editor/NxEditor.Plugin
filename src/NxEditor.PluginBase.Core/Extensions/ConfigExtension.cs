@@ -1,6 +1,6 @@
 ﻿using System.Text.Json;
 
-namespace NxEditor.Plugin.Core.Extensions;
+namespace NxEditor.PluginBase.Core.Extensions;
 
 public abstract class ConfigExtension<T> : IConfigExtension where T : ConfigExtension<T>, new()
 {

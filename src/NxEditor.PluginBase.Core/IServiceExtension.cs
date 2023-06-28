@@ -1,4 +1,4 @@
-﻿namespace NxEditor.Plugin.Core;
+﻿namespace NxEditor.PluginBase.Core;
 
 /// <summary>
 /// Public extension interface

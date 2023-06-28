@@ -1,9 +1,9 @@
 ﻿using Avalonia.Controls;
 using Dock.Model.Mvvm.Controls;
-using NxEditor.Plugin.Core.Models;
-using NxEditor.Plugin.Core.Services;
+using NxEditor.PluginBase.Core.Models;
+using NxEditor.PluginBase.Core.Services;
 
-namespace NxEditor.Plugin.Component;
+namespace NxEditor.PluginBase.Component;
 
 public abstract class Editor<T, TView> : Document, IEditor, IFormatService where T : Editor<T, TView> where TView : UserControl, new()
 {

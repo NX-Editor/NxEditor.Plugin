@@ -1,7 +1,7 @@
-﻿using NxEditor.Plugin.Core.Attributes;
+﻿using NxEditor.PluginBase.Core.Attributes;
 using System.Reflection;
 
-namespace NxEditor.Plugin.Core.Services;
+namespace NxEditor.PluginBase.Core.Services;
 
 public interface IActionService
 {

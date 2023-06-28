@@ -1,4 +1,4 @@
-﻿namespace NxEditor.Plugin.Core.Attributes;
+﻿namespace NxEditor.PluginBase.Core.Attributes;
 
 [AttributeUsage(AttributeTargets.Method)]
 public class CommandAttribute : Attribute

@@ -1,6 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 
-namespace NxEditor.Plugin;
+namespace NxEditor.PluginBase;
 
 public partial class StatusMgr : ObservableObject
 {
