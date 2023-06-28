@@ -5,7 +5,7 @@ using NxEditor.PluginBase.Services;
 
 namespace NxEditor.PluginBase.Component;
 
-public abstract class Editor<T, TView> : Document, IEditor, IFormatService where T : Editor<T, TView> where TView : UserControl, new()
+public abstract class Editor<T, TView> : Document, IEditor, IFormatService, IDisposable where T : Editor<T, TView> where TView : UserControl, new()
 {
     private static readonly Dictionary<string, IActionService> _actions = new();
 
@@ -40,4 +40,7 @@ public abstract class Editor<T, TView> : Document, IEditor, IFormatService where
             await File.WriteAllBytesAsync(path, handle.Data);
         }
     }
+
+    #pragma warning disable CA1816
+    public virtual void Dispose() { }
 }
