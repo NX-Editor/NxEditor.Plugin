@@ -13,6 +13,11 @@ public interface IFormatService
     public Dictionary<string, IActionService> Actions { get; }
 
     /// <summary>
+    /// The supported file extensions when writing the <see cref="IFormatProvider"/>
+    /// </summary>
+    public List<string> ExportExtensions { get; }
+
+    /// <summary>
     /// Stores the source <see cref="IFileHandle"/> as a save reference
     /// </summary>
     public IFileHandle Handle { get; }

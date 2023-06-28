@@ -21,6 +21,7 @@ public abstract class Editor<T, TView> : Document, IEditor, IFormatService, IDis
     public TView View { get; }
     public Dictionary<string, IActionService> Actions => _actions;
     public IFileHandle Handle { get; protected set; }
+    public abstract List<string> ExportExtensions { get; }
 
     public abstract Task Read(IFileHandle handle);
     public abstract Task<IFileHandle> Write();
