@@ -10,7 +10,7 @@ public class ServiceManager : IServiceLoader
 
     private readonly Dictionary<string, IServiceModule> _services = new();
 
-    public IFormatService ProcessHandle(IFileHandle handle)
+    public IFormatService RequestService(IFileHandle handle)
     {
         foreach ((_, var service) in _services.Where(x => x.Value.IsValid(handle)).OrderBy(x => x.Value is IProcessingService)) {
             if (service is IProcessingService proc) {
