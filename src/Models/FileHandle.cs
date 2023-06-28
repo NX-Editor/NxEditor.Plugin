@@ -1,6 +1,6 @@
-﻿using NxEditor.PluginBase.Core.Services;
+﻿using NxEditor.PluginBase.Services;
 
-namespace NxEditor.PluginBase.Core.Models;
+namespace NxEditor.PluginBase.Models;
 
 public class FileHandle : IFileHandle
 {

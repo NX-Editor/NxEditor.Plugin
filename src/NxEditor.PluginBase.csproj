@@ -11,8 +11,4 @@
     <PackageReference Include="Dock.Model.Mvvm" Version="11.0.0-preview6" />
   </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\NxEditor.PluginBase.Core\NxEditor.PluginBase.Core.csproj" />
-  </ItemGroup>
-
 </Project>

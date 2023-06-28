@@ -1,4 +1,4 @@
-﻿using NxEditor.PluginBase.Core.Services;
+﻿using NxEditor.PluginBase.Services;
 
 namespace NxEditor.PluginBase.Component;
 

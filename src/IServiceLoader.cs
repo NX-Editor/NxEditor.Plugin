@@ -1,7 +1,7 @@
-﻿using NxEditor.PluginBase.Core.Extensions;
-using NxEditor.PluginBase.Core.Services;
+﻿using NxEditor.PluginBase.Extensions;
+using NxEditor.PluginBase.Services;
 
-namespace NxEditor.PluginBase.Core;
+namespace NxEditor.PluginBase;
 
 public interface IServiceLoader
 {
