@@ -7,7 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\lib\ConfigFactory\src\ConfigFactory.Avalonia\ConfigFactory.Avalonia.csproj" />
+    <PackageReference Include="ConfigFactory.Avalonia" Version="0.1.0-alpha" />
   </ItemGroup>
 
 </Project>
