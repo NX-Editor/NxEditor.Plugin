@@ -13,15 +13,19 @@ public interface IFormatService
     public Dictionary<string, IActionService> Actions { get; }
 
     /// <summary>
+    /// The supported file extensions when writing the <see cref="IFormatProvider"/>
+    /// </summary>
+    public string[] ExportExtensions { get; }
+
+    /// <summary>
     /// Stores the source <see cref="IFileHandle"/> as a save reference
     /// </summary>
     public IFileHandle Handle { get; }
 
     /// <summary>
-    /// Reads the <paramref name="handle"/> into the <see cref="IFormatService"/>
+    /// Reads the <see cref="Handle"/>
     /// </summary>
-    /// <param name="handle"></param>
-    public Task Read(IFileHandle handle);
+    public Task Read();
 
     /// <summary>
     /// Writes the <see cref="IFormatService"/> payload to an <see cref="IFileHandle"/> and returns the result
