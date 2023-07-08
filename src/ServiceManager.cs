@@ -1,4 +1,4 @@
-﻿using NxEditor.PluginBase.Extensions;
+﻿using ConfigFactory.Core;
 using NxEditor.PluginBase.Models;
 using NxEditor.PluginBase.Services;
 
@@ -37,7 +37,7 @@ public class ServiceManager : IServiceLoader
         return this;
     }
 
-    public IServiceLoader Register(IExtensionModule extension)
+    public IServiceLoader Register(IConfigModule config)
     {
         return this;
     }
