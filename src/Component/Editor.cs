@@ -48,7 +48,7 @@ public abstract class Editor<T, TView> : Document, IEditor, IFormatService, IDis
             await File.WriteAllBytesAsync(path, handle.Data);
         }
 
-        StatusModal.Reset();
+        StatusModal.Set($"Saved {Name} Sucessfully", "fa-regular fa-floppy-disk", false, 2);
     }
 
     #pragma warning disable CA1816
