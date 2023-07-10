@@ -12,12 +12,12 @@ public partial class StatusModal : ObservableObject
     {
         _timer = new((e) => {
             if (IsWorking) {
-                Status = Status.Replace(" ․ ․ ․ ․", string.Empty);
-                Status += " ․";
+                Status = Status.Replace(".....", string.Empty);
+                Status += ".";
             }
         });
 
-        _timer.Change(TimeSpan.FromSeconds(0), TimeSpan.FromSeconds(0.4));
+        _timer.Change(TimeSpan.FromSeconds(0), TimeSpan.FromSeconds(0.3));
     }
 
     [ObservableProperty]
