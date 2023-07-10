@@ -1,4 +1,4 @@
-﻿namespace NxEditor.PluginBase.Component;
+﻿namespace NxEditor.PluginBase.Components;
 
 public static class EditorConfig
 {

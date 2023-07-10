@@ -3,7 +3,7 @@ using Dock.Model.Mvvm.Controls;
 using NxEditor.PluginBase.Models;
 using NxEditor.PluginBase.Services;
 
-namespace NxEditor.PluginBase.Component;
+namespace NxEditor.PluginBase.Components;
 
 public abstract class Editor<T, TView> : Document, IEditor, IFormatService, IDisposable where T : Editor<T, TView> where TView : UserControl, new()
 {
@@ -49,6 +49,6 @@ public abstract class Editor<T, TView> : Document, IEditor, IFormatService, IDis
         StatusModal.Set($"Saved {Title} Sucessfully", "fa-regular fa-floppy-disk", false, 2);
     }
 
-    #pragma warning disable CA1816
+#pragma warning disable CA1816
     public virtual void Dispose() { }
 }

@@ -1,6 +1,6 @@
 ﻿using NxEditor.PluginBase.Services;
 
-namespace NxEditor.PluginBase.Component;
+namespace NxEditor.PluginBase.Components;
 
 /// <summary>
 /// 
