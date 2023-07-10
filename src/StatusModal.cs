@@ -24,7 +24,7 @@ public partial class StatusModal : ObservableObject
     private string _status = "Ready";
 
     [ObservableProperty]
-    private string _icon = "fa-message";
+    private string _icon = "fa-regular fa-message";
 
     [ObservableProperty]
     private bool _isWorking;
