@@ -40,7 +40,7 @@ public partial class StatusModal : ObservableObject
     /// <param name="status">The message to use in the status modal</param>
     /// <param name="icon">The font-awesome icon name and type to use in the status modal</param>
     /// <param name="isWorkingStatus"></param>
-    /// <param name="temporaryStatusTime">Reset the status message after a set amount of time</param>
+    /// <param name="temporaryStatusTime">Reset the status message after a set amount of time (seconds)</param>
     public static void Set(string status, string icon = "fa-regular fa-message", bool? isWorkingStatus = null, double temporaryStatusTime = double.NaN)
     {
         Shared.Status = status;
