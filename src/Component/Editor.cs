@@ -20,8 +20,6 @@ public abstract class Editor<T, TView> : Document, IEditor, IFormatService, IDis
         };
     }
 
-    public virtual string Name { get; } = typeof(T).Name;
-
     public virtual bool HasChanged => false;
     UserControl IEditor.View => View;
 
@@ -35,7 +33,7 @@ public abstract class Editor<T, TView> : Document, IEditor, IFormatService, IDis
 
     public virtual async Task Save(string? path)
     {
-        StatusModal.Set($"Saving {Name}", "fa-regular fa-floppy-disk");
+        StatusModal.Set($"Saving {Title}", "fa-regular fa-floppy-disk");
 
         IFileHandle handle = await Write();
         foreach (var proc in handle.ProcessServices) {
@@ -48,7 +46,7 @@ public abstract class Editor<T, TView> : Document, IEditor, IFormatService, IDis
             await File.WriteAllBytesAsync(path, handle.Data);
         }
 
-        StatusModal.Set($"Saved {Name} Sucessfully", "fa-regular fa-floppy-disk", false, 2);
+        StatusModal.Set($"Saved {Title} Sucessfully", "fa-regular fa-floppy-disk", false, 2);
     }
 
     #pragma warning disable CA1816
