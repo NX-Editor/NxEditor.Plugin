@@ -5,6 +5,6 @@ namespace NxEditor.PluginBase.Components;
 
 public interface IEditor : IEditorInterface, IFormatService, IDisposable
 {
-    public UserControl View { get; }
+    public Control View { get; }
     public bool HasChanged { get; }
 }

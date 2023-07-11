@@ -5,7 +5,7 @@ using NxEditor.PluginBase.Services;
 
 namespace NxEditor.PluginBase.Components;
 
-public abstract class Editor<T, TView> : Document, IEditor, IFormatService, IDisposable where T : Editor<T, TView> where TView : UserControl, new()
+public abstract class Editor<T, TView> : Document, IEditor, IFormatService, IDisposable where T : Editor<T, TView> where TView : Control, new()
 {
     private static readonly Dictionary<string, IActionService> _actions = new();
 
@@ -21,7 +21,7 @@ public abstract class Editor<T, TView> : Document, IEditor, IFormatService, IDis
     }
 
     public virtual bool HasChanged => false;
-    UserControl IEditor.View => View;
+    Control IEditor.View => View;
 
     public TView View { get; }
     public Dictionary<string, IActionService> Actions => _actions;
