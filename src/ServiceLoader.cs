@@ -1,5 +1,4 @@
-﻿using ConfigFactory.Core;
-using NxEditor.PluginBase.Models;
+﻿using NxEditor.PluginBase.Models;
 using NxEditor.PluginBase.Services;
 
 namespace NxEditor.PluginBase;
@@ -34,11 +33,6 @@ public class ServiceLoader : IServiceLoader
     public IServiceLoader Register(string serviceId, IServiceModule service)
     {
         _services.Add(serviceId, service);
-        return this;
-    }
-
-    public IServiceLoader Register(IConfigModule config)
-    {
         return this;
     }
 }
