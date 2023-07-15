@@ -8,9 +8,16 @@ public class ServiceLoader : IServiceLoader
     public static ServiceLoader Shared { get; } = new();
 
     private readonly Dictionary<string, IServiceModule> _services = new();
+    private readonly Dictionary<string, IProcessingService> _processors = new();
 
     public IFormatService RequestService(IFileHandle handle)
     {
+        foreach ((_, var processor) in _processors) {
+            if (processor.IsValid(handle)) {
+                handle = processor.Process(handle);
+            }
+        }
+
         foreach ((_, var service) in _services.Where(x => x.Value.IsValid(handle)).OrderBy(x => x.Value is IProcessingService)) {
             if (service is IProcessingService proc) {
                 handle = proc.Process(handle);
@@ -21,7 +28,14 @@ public class ServiceLoader : IServiceLoader
             return ((IFormatServiceProvider)service).GetService(handle);
         }
 
-        throw new NotSupportedException("The provided IFileHandle is not a supported data type");
+        try {
+            return ((IFormatServiceProvider)_services
+                .First(x => x.Value.IsValid(handle)).Value)
+                .GetService(handle);
+        }
+        catch (Exception ex) {
+            throw new NotSupportedException("The provided IFileHandle is not a supported data type", ex);
+        }
     }
 
     public T? RequestService<T>(string name) where T : class, IServiceModule => RequestService(name) as T;
