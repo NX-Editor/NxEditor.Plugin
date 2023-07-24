@@ -5,7 +5,7 @@ using NxEditor.PluginBase.Services;
 
 namespace NxEditor.PluginBase.Components;
 
-public abstract class Editor<T, TView> : Document, IEditor, IFormatService, IDisposable where T : Editor<T, TView> where TView : Control, new()
+public abstract class Editor<T, TView> : Document, IEditor, IFormatService where T : Editor<T, TView> where TView : Control, new()
 {
     private static readonly Dictionary<string, IActionService> _actions = new();
 
@@ -49,6 +49,8 @@ public abstract class Editor<T, TView> : Document, IEditor, IFormatService, IDis
         StatusModal.Set($"Saved {Title} Sucessfully", "fa-regular fa-floppy-disk", false, 2);
     }
 
-#pragma warning disable CA1816
-    public virtual void Dispose() { }
+    public virtual Task Cleanup()
+    {
+        return Task.CompletedTask;
+    }
 }
