@@ -15,17 +15,8 @@ public class ServiceLoader : IServiceLoader
         foreach ((_, var processor) in _processors) {
             if (processor.IsValid(handle)) {
                 handle = processor.Process(handle);
+                handle.ProcessServices.Add(processor);
             }
-        }
-
-        foreach ((_, var service) in _services.Where(x => x.Value.IsValid(handle)).OrderBy(x => x.Value is IProcessingService)) {
-            if (service is IProcessingService proc) {
-                handle = proc.Process(handle);
-                handle.ProcessServices.Add(proc);
-                continue;
-            }
-
-            return ((IFormatServiceProvider)service).GetService(handle);
         }
 
         try {
@@ -42,6 +33,12 @@ public class ServiceLoader : IServiceLoader
     public IServiceModule? RequestService(string name)
     {
         return _services.TryGetValue(name, out var service) ? service : null;
+    }
+
+    public IServiceLoader Register(string serviceId, IProcessingService service)
+    {
+        _processors.Add(serviceId, service);
+        return this;
     }
 
     public IServiceLoader Register(string serviceId, IServiceModule service)
