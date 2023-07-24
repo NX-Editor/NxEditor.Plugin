@@ -8,11 +8,11 @@ public class ServiceLoader : IServiceLoader
     public static ServiceLoader Shared { get; } = new();
 
     private readonly Dictionary<string, IServiceModule> _services = new();
-    private readonly Dictionary<string, IProcessingService> _processors = new();
+    private readonly List<IProcessingService> _processors = new();
 
     public IFormatService RequestService(IFileHandle handle)
     {
-        foreach ((_, var processor) in _processors) {
+        foreach (var processor in _processors) {
             if (processor.IsValid(handle)) {
                 handle = processor.Process(handle);
                 handle.ProcessServices.Add(processor);
@@ -35,9 +35,9 @@ public class ServiceLoader : IServiceLoader
         return _services.TryGetValue(name, out var service) ? service : null;
     }
 
-    public IServiceLoader Register(string serviceId, IProcessingService service)
+    public IServiceLoader Register(IProcessingService service)
     {
-        _processors.Add(serviceId, service);
+        _processors.Add(service);
         return this;
     }
 
