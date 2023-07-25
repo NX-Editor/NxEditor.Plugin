@@ -49,8 +49,14 @@ public abstract class Editor<T, TView> : Document, IEditor, IFormatService where
         StatusModal.Set($"Saved {Title} Sucessfully", "fa-regular fa-floppy-disk", false, 2);
     }
 
-    public virtual Task Cleanup()
+    public virtual void Cleanup()
     {
-        return Task.CompletedTask;
+
+    }
+
+    public override bool OnClose()
+    {
+        Cleanup();
+        return base.OnClose();
     }
 }

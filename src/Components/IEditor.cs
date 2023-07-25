@@ -7,5 +7,5 @@ public interface IEditor : IEditorInterface, IFormatService
 {
     public Control View { get; }
     public bool HasChanged { get; }
-    public Task Cleanup();
+    public void Cleanup();
 }
