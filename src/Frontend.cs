@@ -1,6 +1,6 @@
 ﻿namespace NxEditor.PluginBase;
 
-public class Fontend
+public class Frontend
 {
     private static readonly Dictionary<Type, object> _services = new();
 
@@ -10,8 +10,9 @@ public class Fontend
         _services.Add(typeof(T), service);
     }
 
-    public static T? Locate<T>() where T : class
+    public static T Locate<T>() where T : class
     {
-        return _services[typeof(T)] as T;
+        return _services[typeof(T)] as T
+            ?? throw new ApplicationException($"Could not locate '{typeof(T).Name}' from Frontend");
     }
 }
