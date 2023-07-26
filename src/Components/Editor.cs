@@ -59,6 +59,8 @@ public abstract class Editor<T, TView> : Document, IEditor, IEditorInterface, IF
 
     public virtual Task Find() => Task.CompletedTask;
     public virtual Task FindAndReplace() => Task.CompletedTask;
+
+    public virtual void Activate() { }
     public virtual void Cleanup() { }
 
     public override bool OnClose()
