@@ -1,5 +1,8 @@
 ﻿namespace NxEditor.PluginBase;
 
+/// <summary>
+/// Frontend dependency injection manager
+/// </summary>
 public class Frontend
 {
     private static readonly Dictionary<Type, object> _services = new();
