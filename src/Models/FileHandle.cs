@@ -11,6 +11,8 @@ public class FileHandle : IFileHandle
 
     public FileHandle(byte[] data, string? path = null)
     {
+        Name = path is not null ? System.IO.Path.GetFileName(path)
+            : string.Empty;
         Data = data;
         Path = path;
     }
