@@ -11,7 +11,7 @@ public abstract class Editor<T, TView> : Document, IEditor, IEditorInterface, IF
 
     public Editor(IFileHandle handle)
     {
-        Id = handle.Path ?? handle.Name;
+        Id = handle.FilePath ?? handle.Name;
         Title = handle.Name;
 
         Handle = handle;

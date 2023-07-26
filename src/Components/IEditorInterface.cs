@@ -7,7 +7,7 @@ namespace NxEditor.PluginBase.Components;
 /// </summary>
 public interface IEditorInterface : IFormatService
 {
-    public Task Save() => Save(Handle.Path);
+    public Task Save() => Save(Handle.FilePath);
     public Task Save(string? path);
 
     public Task Undo();
