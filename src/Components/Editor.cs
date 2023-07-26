@@ -49,6 +49,16 @@ public abstract class Editor<T, TView> : Document, IEditor, IEditorInterface, IF
         StatusModal.Set($"Saved {Title} Sucessfully", "fa-regular fa-floppy-disk", false, 2);
     }
 
+    public virtual Task Undo() => Task.CompletedTask;
+    public virtual Task Redo() => Task.CompletedTask;
+
+    public virtual Task SelectAll() => Task.CompletedTask;
+    public virtual Task Cut() => Task.CompletedTask;
+    public virtual Task Copy() => Task.CompletedTask;
+    public virtual Task Paste() => Task.CompletedTask;
+
+    public virtual Task Find() => Task.CompletedTask;
+    public virtual Task FindAndReplace() => Task.CompletedTask;
     public virtual void Cleanup() { }
 
     public override bool OnClose()
