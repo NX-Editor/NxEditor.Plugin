@@ -9,6 +9,22 @@ namespace NxEditor.PluginBase;
 public partial class GlobalConfig : ConfigModule<GlobalConfig>
 {
     private static readonly string _defaultPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "nx-editor");
+    private string? _oldStorageFolder;
+
+    public GlobalConfig()
+    {
+        OnSaving += () => {
+            if (StorageFolder == StaticPath) {
+                StorageFolder = _oldStorageFolder ?? _defaultPath;
+            }
+
+            if (!string.IsNullOrEmpty(_oldStorageFolder) && Directory.Exists(_oldStorageFolder)) {
+                DirectoryExtension.Copy(_oldStorageFolder, StorageFolder);
+            }
+
+            return true;
+        };
+    }
 
     public static string StaticPath { get; } = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "nx-editor-static");
 
@@ -32,13 +48,6 @@ public partial class GlobalConfig : ConfigModule<GlobalConfig>
 
     partial void OnStorageFolderChanging(string? oldValue, string newValue)
     {
-        if (newValue != StaticPath) {
-            StorageFolder = oldValue ?? _defaultPath;
-            return;
-        }
-
-        if (!string.IsNullOrEmpty(oldValue) && Directory.Exists(oldValue)) {
-            DirectoryExtension.Copy(oldValue, newValue);
-        }
+        _oldStorageFolder = oldValue;
     }
 }
