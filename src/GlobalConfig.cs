@@ -37,7 +37,7 @@ public partial class GlobalConfig : ConfigModule<GlobalConfig>
         Description = """
         The folder where NX-Editor will store plugins, resources, logs, and other internal files
 
-        Warning: The old folder must be deleted manually after closing NX-Editor
+        Warning: The old folder must be deleted manually after saving and closing NX-Editor
         """,
         Group = "Application")]
     [property: BrowserConfig(
