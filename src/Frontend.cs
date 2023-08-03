@@ -18,4 +18,11 @@ public class Frontend
         return _services[typeof(T)] as T
             ?? throw new ApplicationException($"Could not locate '{typeof(T).Name}' from Frontend");
     }
+
+    public static bool TryLocate<T>(out T? service) where T : class
+    {
+        bool result = _services.TryGetValue(typeof(T), out object? value);
+        service = value as T;
+        return result;
+    }
 }
