@@ -20,6 +20,7 @@ public partial class GlobalConfig : ConfigModule<GlobalConfig>
 
             if (!string.IsNullOrEmpty(_oldStorageFolder) && Directory.Exists(_oldStorageFolder)) {
                 DirectoryExtension.Copy(_oldStorageFolder, StorageFolder);
+                _oldStorageFolder = null;
             }
 
             return true;
@@ -48,6 +49,8 @@ public partial class GlobalConfig : ConfigModule<GlobalConfig>
 
     partial void OnStorageFolderChanging(string? oldValue, string newValue)
     {
-        _oldStorageFolder = oldValue;
+        if (Directory.Exists(oldValue)) {
+            _oldStorageFolder ??= oldValue;
+        }
     }
 }
