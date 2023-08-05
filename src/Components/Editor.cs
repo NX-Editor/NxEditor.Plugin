@@ -5,7 +5,7 @@ using NxEditor.PluginBase.Services;
 
 namespace NxEditor.PluginBase.Components;
 
-public abstract class Editor<T, TView> : Document, IEditor, IEditorInterface, IFormatService where T : Editor<T, TView> where TView : Control, new()
+public abstract class Editor<TView> : Document, IEditor, IEditorInterface, IFormatService where TView : Control, new()
 {
     private static readonly Dictionary<string, IActionService> _actions = new();
 
