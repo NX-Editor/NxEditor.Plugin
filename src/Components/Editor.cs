@@ -1,5 +1,7 @@
 ﻿using Avalonia.Controls;
 using Dock.Model.Mvvm.Controls;
+using NxEditor.PluginBase.Common;
+using NxEditor.PluginBase.Extensions;
 using NxEditor.PluginBase.Models;
 using NxEditor.PluginBase.Services;
 
@@ -66,6 +68,17 @@ public abstract class Editor<TView> : Document, IEditor, IEditorInterface, IForm
     public override bool OnClose()
     {
         Cleanup();
+
+        if (HasChanged) {
+            DialogResult result = DialogBox.ShowAsync("Warning",
+                "You have unsaved changes, are you sure you would like to exit?",
+                primaryButtonContent: "Yes").WaitSynchronously();
+
+            if (result != DialogResult.Primary) {
+                return false;
+            }
+        }
+
         return base.OnClose();
     }
 }
