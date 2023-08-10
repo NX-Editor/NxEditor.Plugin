@@ -5,7 +5,7 @@ namespace NxEditor.PluginBase;
 
 public interface IServiceLoader
 {
-    public IFormatService RequestService(IFileHandle handle);
+    public Task<IFormatService> RequestService(IFileHandle handle);
     public IServiceModule? RequestService(string name);
     public T? RequestService<T>(string name) where T : class, IServiceModule;
 

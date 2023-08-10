@@ -1,0 +1,39 @@
+<UserControl x:Class="NxEditor.PluginBase.Views.ItemSelectorView"
+             xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:types="using:NxEditor.PluginBase.Services"
+             xmlns:vm="using:NxEditor.PluginBase.ViewModels"
+             d:DesignHeight="450"
+             d:DesignWidth="800"
+             x:CompileBindings="True"
+             x:DataType="vm:ItemSelectorViewModel"
+             mc:Ignorable="d">
+    <StackPanel>
+        <TextBlock Margin="0,0,0,15"
+                   FontFamily="{StaticResource Ubuntu}"
+                   Text="The file opened is supported by multiple editors,&#x0A;which one would you like to use?" />
+        <ListBox AutoScrollToSelectedItem="True"
+                 Background="Transparent"
+                 ItemsSource="{Binding Items}"
+                 SelectedIndex="{Binding Index}"
+                 SelectionMode="AlwaysSelected">
+            <ListBox.ItemTemplate>
+                <DataTemplate x:DataType="types:IServiceModule">
+                    <TextBlock HorizontalAlignment="Left"
+                               FontFamily="{StaticResource UbuntuMono}"
+                               FontSize="10"
+                               Text="{Binding}" />
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+            <ListBox.Styles>
+                <Style Selector="ListBoxItem">
+                    <Setter Property="CornerRadius" Value="2" />
+                    <Setter Property="Margin" Value="0,0,0,3" />
+                    <Setter Property="Padding" Value="5,3" />
+                </Style>
+            </ListBox.Styles>
+        </ListBox>
+    </StackPanel>
+</UserControl>
