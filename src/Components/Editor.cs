@@ -10,6 +10,7 @@ namespace NxEditor.PluginBase.Components;
 public abstract class Editor<TView> : Document, IEditor, IEditorInterface, IFormatService where TView : Control, new()
 {
     private static readonly Dictionary<string, IActionService> _actions = new();
+    private static Type? _lastEditorMenu;
 
     public Editor(IFileHandle handle)
     {
@@ -29,6 +30,7 @@ public abstract class Editor<TView> : Document, IEditor, IEditorInterface, IForm
     public Dictionary<string, IActionService> Actions => _actions;
     public IFileHandle Handle { get; protected set; }
     public abstract string[] ExportExtensions { get; }
+    public virtual object? MenuModel { get; protected set; }
 
     public abstract Task Read();
     public abstract Task<IFileHandle> Write();
@@ -64,6 +66,22 @@ public abstract class Editor<TView> : Document, IEditor, IEditorInterface, IForm
 
     public virtual void Activate() { }
     public virtual void Cleanup() { }
+
+    public override void OnSelected()
+    {
+        if (_lastEditorMenu != null) {
+            Frontend.Locate<IMenuFactory>()
+                .Prepend(_lastEditorMenu);
+        }
+
+        _lastEditorMenu = MenuModel?.GetType();
+        if (MenuModel != null) {
+            Frontend.Locate<IMenuFactory>()
+                .Append(MenuModel);
+        }
+
+        base.OnSelected();
+    }
 
     public override bool OnClose()
     {
