@@ -92,7 +92,7 @@ public partial class DialogBox : ObservableObject
     public static async Task<DialogResult> ShowAsync(string? title, object? content) => await ShowAsync(title, content, showPrimaryButton: true);
     public static async Task<DialogResult> ShowAsync(string? title, object? content,
         bool showPrimaryButton = true, object? primaryButtonContent = null, Func<RoutedEventArgs, Task>? primaryButtonAction = null,
-        bool showSecondaryButton = true, object ? secondaryButtonContent = null, Func<RoutedEventArgs, Task>? secondaryButtonAction = null)
+        bool showSecondaryButton = true, object? secondaryButtonContent = null, Func<RoutedEventArgs, Task>? secondaryButtonAction = null)
     {
         return await new DialogBox() {
             Title = title,

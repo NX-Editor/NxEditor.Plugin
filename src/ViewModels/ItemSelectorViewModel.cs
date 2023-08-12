@@ -1,5 +1,4 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
-using NxEditor.PluginBase.Services;
 
 namespace NxEditor.PluginBase.ViewModels;
 

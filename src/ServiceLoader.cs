@@ -49,7 +49,7 @@ public class ServiceLoader : IServiceLoader
                 DataContext = context
             }
         };
-        
+
         if (await dialog.ShowAsync() == DialogResult.Primary) {
             var provider = (IFormatServiceProvider)providers[context.Index].Value;
             return provider.GetService(handle);
