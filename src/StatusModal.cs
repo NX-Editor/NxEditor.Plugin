@@ -1,4 +1,5 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
+using System.Diagnostics;
 
 namespace NxEditor.PluginBase;
 
@@ -60,5 +61,7 @@ public partial class StatusModal : ObservableObject
 
             resetTimer.Start();
         }
+
+        Trace.WriteLine(status);
     }
 }
