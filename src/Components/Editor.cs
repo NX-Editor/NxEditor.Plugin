@@ -4,6 +4,7 @@ using NxEditor.PluginBase.Common;
 using NxEditor.PluginBase.Extensions;
 using NxEditor.PluginBase.Models;
 using NxEditor.PluginBase.Services;
+using System.Diagnostics;
 
 namespace NxEditor.PluginBase.Components;
 
@@ -38,18 +39,24 @@ public abstract class Editor<TView> : Document, IEditor, IEditorInterface, IForm
     {
         StatusModal.Set($"Saving {Title}", "fa-regular fa-floppy-disk");
 
-        IFileHandle handle = await Write();
-        foreach (var proc in handle.ProcessServices) {
-            proc.Reprocess(handle);
+        try {
+            IFileHandle handle = await Write();
+            foreach (var proc in handle.ProcessServices) {
+                proc.Reprocess(handle);
+            }
+
+            Handle.Data = handle.Data;
+
+            if (path is not null) {
+                await File.WriteAllBytesAsync(path, handle.Data);
+            }
+
+            StatusModal.Set($"Saved {Title} Sucessfully", "fa-regular fa-floppy-disk", false, 2);
         }
-
-        Handle.Data = handle.Data;
-
-        if (path is not null) {
-            await File.WriteAllBytesAsync(path, handle.Data);
+        catch (Exception ex) {
+            StatusModal.Set($"Error Saving: {ex.Message}", "fa-regular fa-circle-xmark", isWorkingStatus: false, temporaryStatusTime: 3);
+            Trace.WriteLine(ex);
         }
-
-        StatusModal.Set($"Saved {Title} Sucessfully", "fa-regular fa-floppy-disk", false, 2);
     }
 
     public virtual Task Undo() => Task.CompletedTask;
