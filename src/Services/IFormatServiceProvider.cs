@@ -7,5 +7,5 @@ namespace NxEditor.PluginBase.Services;
 /// </summary>
 public interface IFormatServiceProvider : IServiceModule
 {
-    public IFormatService GetService(IFileHandle handle);
+    public IFormatService GetService(IEditorFile handle);
 }

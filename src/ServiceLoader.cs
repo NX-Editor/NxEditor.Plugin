@@ -13,12 +13,12 @@ public class ServiceLoader : IServiceLoader
     private readonly Dictionary<string, IServiceModule> _services = [];
     private readonly List<IProcessingService> _processors = [];
 
-    public async Task<IFormatService> RequestService(IFileHandle handle)
+    public async Task<IFormatService> RequestService(IEditorFile handle)
     {
         foreach (var processor in _processors) {
             if (processor.IsValid(handle)) {
-                handle = processor.Process(handle);
-                handle.ProcessServices.Add(processor);
+                processor.Process(handle);
+                handle.Services.Add(processor);
             }
         }
 
@@ -26,7 +26,7 @@ public class ServiceLoader : IServiceLoader
             ?? throw new NotSupportedException("The provided IFileHandle is not a supported data type");
     }
 
-    public async Task<IFormatService?> SelectServiceDialog(IFileHandle handle)
+    public async Task<IFormatService?> SelectServiceDialog(IEditorFile handle)
     {
         KeyValuePair<string, IServiceModule>[] providers = _services
             .Where(x => x.Value.IsValid(handle))

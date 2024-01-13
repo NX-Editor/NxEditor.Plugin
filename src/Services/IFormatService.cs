@@ -20,16 +20,16 @@ public interface IFormatService
     /// <summary>
     /// Stores the source <see cref="IFileHandle"/> as a save reference
     /// </summary>
-    public IFileHandle Handle { get; }
+    public IEditorFile Handle { get; }
 
     /// <summary>
     /// Reads the <see cref="Handle"/>
     /// </summary>
-    public Task Read();
+    public void Read();
 
     /// <summary>
-    /// Writes the <see cref="IFormatService"/> payload to an <see cref="IFileHandle"/> and returns the result
+    /// Writes the <see cref="IFormatService"/> and returns the data as <see cref="Span{T}"/>.
     /// </summary>
     /// <returns></returns>
-    public Task<IFileHandle> Write();
+    public Span<byte> Write();
 }

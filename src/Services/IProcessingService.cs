@@ -12,12 +12,12 @@ public interface IProcessingService : IServiceModule
     /// </summary>
     /// <param name="handle"></param>
     /// <returns></returns>
-    public IFileHandle Process(IFileHandle handle);
+    public void Process(IEditorFile handle);
 
     /// <summary>
     /// Reprocesses raw data and returns the result
     /// </summary>
     /// <param name="handle"></param>
     /// <returns></returns>
-    public IFileHandle Reprocess(IFileHandle handle);
+    public void Reprocess(IEditorFile handle);
 }

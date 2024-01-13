@@ -12,7 +12,7 @@ public abstract class Editor<TView> : Document, IEditor, IEditorInterface, IForm
 {
     private static readonly Dictionary<string, IActionService> _actions = [];
 
-    public Editor(IFileHandle handle)
+    public Editor(IEditorFile handle)
     {
         Id = handle.Id;
         Title = handle.Name;
@@ -28,27 +28,28 @@ public abstract class Editor<TView> : Document, IEditor, IEditorInterface, IForm
 
     public TView View { get; }
     public Dictionary<string, IActionService> Actions => _actions;
-    public IFileHandle Handle { get; protected set; }
+    public IEditorFile Handle { get; protected set; }
     public abstract string[] ExportExtensions { get; }
     public virtual object? MenuModel { get; protected set; }
 
-    public abstract Task Read();
-    public abstract Task<IFileHandle> Write();
+    public abstract void Read();
+    public abstract Span<byte> Write();
 
-    public virtual async Task Save(string? path)
+    public virtual void Save(string? path)
     {
         StatusModal.Set($"Saving {Title}", "fa-regular fa-floppy-disk");
 
         try {
-            IFileHandle handle = await Write();
-            foreach (var proc in handle.ProcessServices) {
-                proc.Reprocess(handle);
+            Span<byte> data = Write();
+            foreach (var proc in Handle.Services) {
+                proc.Reprocess(Handle);
             }
 
-            Handle.Data = handle.Data;
-
             if (path is not null) {
-                await File.WriteAllBytesAsync(path, handle.Data);
+                EditorFile.WriteToDisk(path, data);
+            }
+            else {
+                Handle.Write(Handle, data);
             }
 
             StatusModal.Set($"Saved {Title} Sucessfully", "fa-regular fa-floppy-disk", false, 2);
