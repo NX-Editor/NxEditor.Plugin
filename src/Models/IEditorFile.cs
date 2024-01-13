@@ -18,9 +18,9 @@ public interface IEditorFile
     public string Name { get; set; }
 
     /// <summary>
-    /// The delegate to read the <see cref="IEditorFile"/>
+    /// The source data
     /// </summary>
-    public byte[] Source { get; }
+    public byte[] Source { get; set; }
 
     /// <summary>
     /// The delegate to save the <see cref="IEditorFile"/>
