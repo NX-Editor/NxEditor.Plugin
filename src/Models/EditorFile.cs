@@ -4,11 +4,11 @@ using System.Collections.ObjectModel;
 
 namespace NxEditor.PluginBase.Models;
 
-public sealed class EditorFile(string id, string name, ReadEditorFile read, WriteEditorFile write) : IEditorFile
+public sealed class EditorFile(string id, string name, byte[] source, WriteEditorFile write) : IEditorFile
 {
     public string Id { get; } = id;
     public string Name { get; set; } = name;
-    public ReadEditorFile Read { get; set; } = read;
+    public byte[] Source { get; set; } = source;
     public WriteEditorFile Write { get; set; } = write;
     public ObservableCollection<IProcessingService> Services { get; } = [];
 
@@ -23,17 +23,12 @@ public sealed class EditorFile(string id, string name, ReadEditorFile read, Writ
         return new(
             file,
             Path.GetFileName(file),
-            (editor) => ReadFromDisk(editor.Id),
-            (editor, data) => WriteToDisk(editor.Id, data)
+            ReadSafe(file),
+            (data) => WriteSafe(file, data)
         );
     }
 
-    /// <summary>
-    /// Reads from disk assuming <see cref="Id"/> is the file path.
-    /// </summary>
-    /// <param name="data"></param>
-    /// <returns></returns>
-    public static Span<byte> ReadFromDisk(string file)
+    public static byte[] ReadSafe(string file)
     {
         if (!File.Exists(file)) {
             throw new FileNotFoundException($"""
@@ -44,12 +39,7 @@ public sealed class EditorFile(string id, string name, ReadEditorFile read, Writ
         return File.ReadAllBytes(file);
     }
 
-    /// <summary>
-    /// Writes to disk assuming <see cref="Id"/> is the file path.
-    /// </summary>
-    /// <param name="data"></param>
-    /// <returns></returns>
-    public static void WriteToDisk(string file, Span<byte> data)
+    public static void WriteSafe(string file, Span<byte> data)
     {
         if (Path.GetDirectoryName(file) is string folder) {
             Directory.CreateDirectory(folder);
