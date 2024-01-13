@@ -5,7 +5,7 @@
 /// </summary>
 public class Frontend
 {
-    private static readonly Dictionary<Type, object> _services = new();
+    private static readonly Dictionary<Type, object> _services = [];
 
     public static void Register<T>() where T : class, new() => Register(new T());
     public static void Register<T>(T service) where T : class

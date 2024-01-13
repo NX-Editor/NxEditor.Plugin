@@ -10,8 +10,8 @@ public class ServiceLoader : IServiceLoader
 {
     public static ServiceLoader Shared { get; } = new();
 
-    private readonly Dictionary<string, IServiceModule> _services = new();
-    private readonly List<IProcessingService> _processors = new();
+    private readonly Dictionary<string, IServiceModule> _services = [];
+    private readonly List<IProcessingService> _processors = [];
 
     public async Task<IFormatService> RequestService(IFileHandle handle)
     {

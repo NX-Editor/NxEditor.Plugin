@@ -10,7 +10,7 @@ namespace NxEditor.PluginBase.Components;
 
 public abstract class Editor<TView> : Document, IEditor, IEditorInterface, IFormatService where TView : Control, new()
 {
-    private static readonly Dictionary<string, IActionService> _actions = new();
+    private static readonly Dictionary<string, IActionService> _actions = [];
 
     public Editor(IFileHandle handle)
     {
