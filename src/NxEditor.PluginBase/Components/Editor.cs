@@ -48,8 +48,10 @@ public abstract class Editor<TView> : Document, IEditor, IEditorInterface, IForm
             if (path is not null) {
                 EditorFile.WriteSafe(path, data);
             }
+            else {
+                Handle.Write(ref data);
+            }
 
-            Handle.Write(ref data);
             StatusModal.Set($"Saved {Title} Sucessfully", "fa-regular fa-floppy-disk", false, 2);
         }
         catch (Exception ex) {
