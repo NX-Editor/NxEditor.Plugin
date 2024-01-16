@@ -1,0 +1,27 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+    
+  <ItemGroup>
+    <None Include="../../Icon.png" Link="Assets\Icon.png">  
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+  	<None Include="../../Readme.md" Link="Assets\Readme.md">
+  	  <Pack>True</Pack>
+  	  <PackagePath>\</PackagePath>
+  	</None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="ConfigFactory.Avalonia" Version="0.3.1" />
+  </ItemGroup>
+
+</Project>
