@@ -3,7 +3,7 @@ using System.Collections.ObjectModel;
 
 namespace NxEditor.PluginBase.Models;
 
-public delegate void WriteEditorFile(Span<byte> data);
+public delegate void WriteEditorFile(ref Span<byte> data);
 
 public interface IEditorFile
 {
@@ -25,10 +25,10 @@ public interface IEditorFile
     /// <summary>
     /// The delegate to save the <see cref="IEditorFile"/>
     /// </summary>
-    public WriteEditorFile Write { get; set; }
+    public WriteEditorFile Write { get; }
 
     /// <summary>
     /// Collection of processing services to use when saving
     /// </summary>
-    public ObservableCollection<IProcessingService> Services { get; }
+    public ObservableCollection<ITransformer> Services { get; }
 }

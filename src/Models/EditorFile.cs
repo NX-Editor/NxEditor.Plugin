@@ -9,8 +9,8 @@ public sealed class EditorFile(string id, string name, byte[] source, WriteEdito
     public string Id { get; } = id;
     public string Name { get; set; } = name;
     public byte[] Source { get; set; } = source;
-    public WriteEditorFile Write { get; set; } = write;
-    public ObservableCollection<IProcessingService> Services { get; } = [];
+    public WriteEditorFile Write { get; } = write;
+    public ObservableCollection<ITransformer> Services { get; } = [];
 
     /// <summary>
     /// Create a new <see cref="IEditorFile"/> from a local file.
@@ -24,7 +24,7 @@ public sealed class EditorFile(string id, string name, byte[] source, WriteEdito
             file,
             Path.GetFileName(file),
             ReadSafe(file),
-            (data) => WriteSafe(file, data)
+            (ref Span<byte> data) => WriteSafe(file, data)
         );
     }
 

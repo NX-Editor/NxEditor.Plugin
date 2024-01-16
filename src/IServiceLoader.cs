@@ -9,6 +9,6 @@ public interface IServiceLoader
     public IServiceModule? RequestService(string name);
     public T? RequestService<T>(string name) where T : class, IServiceModule;
 
-    public IServiceLoader Register(IProcessingService service);
+    public IServiceLoader Register(ITransformer service);
     public IServiceLoader Register(string serviceId, IServiceModule service);
 }

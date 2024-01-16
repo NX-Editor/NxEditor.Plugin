@@ -42,16 +42,14 @@ public abstract class Editor<TView> : Document, IEditor, IEditorInterface, IForm
         try {
             Span<byte> data = Write();
             foreach (var proc in Handle.Services) {
-                proc.Reprocess(Handle);
+                proc.Transform(ref data, Handle);
             }
 
             if (path is not null) {
                 EditorFile.WriteSafe(path, data);
             }
-            else {
-                Handle.Write(data);
-            }
 
+            Handle.Write(ref data);
             StatusModal.Set($"Saved {Title} Sucessfully", "fa-regular fa-floppy-disk", false, 2);
         }
         catch (Exception ex) {

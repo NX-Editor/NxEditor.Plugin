@@ -11,13 +11,13 @@ public class ServiceLoader : IServiceLoader
     public static ServiceLoader Shared { get; } = new();
 
     private readonly Dictionary<string, IServiceModule> _services = [];
-    private readonly List<IProcessingService> _processors = [];
+    private readonly List<ITransformer> _processors = [];
 
     public async Task<IFormatService> RequestService(IEditorFile handle)
     {
         foreach (var processor in _processors) {
             if (processor.IsValid(handle)) {
-                processor.Process(handle);
+                processor.TransformSource(handle);
                 handle.Services.Add(processor);
             }
         }
@@ -65,7 +65,7 @@ public class ServiceLoader : IServiceLoader
         return _services.TryGetValue(name, out var service) ? service : null;
     }
 
-    public IServiceLoader Register(IProcessingService service)
+    public IServiceLoader Register(ITransformer service)
     {
         _processors.Add(service);
         return this;
