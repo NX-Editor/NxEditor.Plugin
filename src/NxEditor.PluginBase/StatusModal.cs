@@ -44,7 +44,7 @@ public partial class StatusModal : ObservableObject
     /// <param name="temporaryStatusTime">Reset the status message after a set amount of time (seconds)</param>
     public static void Set(string status, string icon = "fa-regular fa-message", bool? isWorkingStatus = null, double temporaryStatusTime = double.NaN)
     {
-        bool isResetStatus = status.ToLower() == "ready";
+        bool isResetStatus = status.Equals("ready", StringComparison.CurrentCultureIgnoreCase);
 
         Shared.Status = status;
         Shared.IsWorking = isWorkingStatus ?? !isResetStatus;
