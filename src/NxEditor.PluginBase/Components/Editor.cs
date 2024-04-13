@@ -76,13 +76,13 @@ public abstract class Editor<TView> : Document, IEditor, IEditorInterface, IForm
 
     public override void OnSelected()
     {
-        if (EditorExtension.LastEditorMenu != null) {
+        if (EditorExtension.LastEditorMenu is not null) {
             Frontend.Locate<IMenuFactory>()
                 .Prepend(EditorExtension.LastEditorMenu);
         }
 
         EditorExtension.LastEditorMenu = MenuModel?.GetType();
-        if (MenuModel != null) {
+        if (MenuModel is not null) {
             Frontend.Locate<IMenuFactory>()
                 .Append(MenuModel);
         }

@@ -1,4 +1,5 @@
-﻿using NxEditor.PluginBase.Common;
+﻿using Avalonia.Controls;
+using NxEditor.PluginBase.Common;
 using NxEditor.PluginBase.Models;
 using NxEditor.PluginBase.Services;
 using NxEditor.PluginBase.ViewModels;
