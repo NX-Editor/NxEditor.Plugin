@@ -1,5 +1,4 @@
-﻿using Avalonia.Controls;
-using NxEditor.PluginBase.Common;
+﻿using NxEditor.PluginBase.Common;
 using NxEditor.PluginBase.Models;
 using NxEditor.PluginBase.Services;
 using NxEditor.PluginBase.ViewModels;
@@ -27,7 +26,7 @@ public class ServiceLoader : IServiceLoader
             ?? throw new NotSupportedException("The provided IFileHandle is not a supported data type");
     }
 
-    public async Task<IFormatService?> SelectServiceDialog(IEditorFile handle)
+    private async Task<IFormatService?> SelectServiceDialog(IEditorFile handle)
     {
         KeyValuePair<string, IServiceModule>[] providers = _services
             .Where(x => x.Value.IsValid(handle))
@@ -60,8 +59,33 @@ public class ServiceLoader : IServiceLoader
         }
     }
 
-    public T? RequestService<T>(string name) where T : class, IServiceModule => RequestService(name) as T;
-    public IServiceModule? RequestService(string name)
+    public T? GetFirstService<T>(IEditorFile handle) where T : class, IFormatService
+    {
+        return GetServices(handle).FirstOrDefault(x => x is T) as T;
+    }
+
+    public IFormatService? GetFirstService(IEditorFile handle)
+    {
+        return GetServices(handle).FirstOrDefault();
+    }
+
+    public IEnumerable<IFormatService> GetServices(IEditorFile handle)
+    {
+        foreach (var processor in _processors) {
+            if (processor.IsValid(handle)) {
+                processor.TransformSource(handle);
+                handle.Services.Add(processor);
+            }
+        }
+
+        return _services
+            .Where(x => x.Value.IsValid(handle))
+            .Select(x => (x.Value as IFormatServiceProvider)?.GetService(handle)!)
+            .Where(x => x is not null);
+    }
+
+    public T? GetService<T>(string name) where T : class, IServiceModule => GetService(name) as T;
+    public IServiceModule? GetService(string name)
     {
         return _services.TryGetValue(name, out var service) ? service : null;
     }
