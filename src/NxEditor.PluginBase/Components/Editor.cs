@@ -31,6 +31,7 @@ public abstract class Editor<TView> : Document, IEditor, IEditorInterface, IForm
     public IEditorFile Handle { get; protected set; }
     public abstract string[] ExportExtensions { get; }
     public virtual object? MenuModel { get; protected set; }
+    public virtual object? FooterModel { get; protected set; }
 
     public abstract void Read();
     public abstract Span<byte> Write();
@@ -76,6 +77,7 @@ public abstract class Editor<TView> : Document, IEditor, IEditorInterface, IForm
 
     public override void OnSelected()
     {
+        // Update Menu
         if (EditorExtension.LastEditorMenu is not null) {
             Frontend.Locate<IMenuFactory>()
                 .Remove(EditorExtension.LastEditorMenu);
@@ -85,6 +87,18 @@ public abstract class Editor<TView> : Document, IEditor, IEditorInterface, IForm
         if (MenuModel is not null) {
             Frontend.Locate<IMenuFactory>()
                 .Append(MenuModel);
+        }
+
+        // Update Footer
+        if (EditorExtension.LastEditorFooter is not null) {
+            Frontend.Locate<IFooterFactory>()
+                .Remove(EditorExtension.LastEditorFooter);
+        }
+
+        EditorExtension.LastEditorFooter = FooterModel?.GetType();
+        if (FooterModel is not null) {
+            Frontend.Locate<IFooterFactory>()
+                .Append(FooterModel);
         }
 
         base.OnSelected();
