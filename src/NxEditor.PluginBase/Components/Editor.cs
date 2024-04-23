@@ -78,7 +78,7 @@ public abstract class Editor<TView> : Document, IEditor, IEditorInterface, IForm
     {
         if (EditorExtension.LastEditorMenu is not null) {
             Frontend.Locate<IMenuFactory>()
-                .Prepend(EditorExtension.LastEditorMenu);
+                .Remove(EditorExtension.LastEditorMenu);
         }
 
         EditorExtension.LastEditorMenu = MenuModel?.GetType();
